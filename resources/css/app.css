@@ -1,3 +1,88 @@
+/* Import Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Global Styles (Opsional) */
+
+/* Mengatur font dasar untuk seluruh body */
+body {
+    font-family: 'Inter', sans-serif; /* Menggunakan font Inter, atau fallback sans-serif */
+    line-height: 1.6;
+    color: #333; /* Warna teks default yang lebih gelap */
+}
+
+/* Styling untuk elemen fokus (aksesibilitas) */
+*:focus {
+    outline: 2px solid #F59E0B; /* Warna kuning aksen dari palet Anda */
+    outline-offset: 2px;
+}
+
+/* Styling untuk link */
+a {
+    transition: color 0.3s ease; /* Transisi halus untuk hover */
+}
+
+/* Contoh styling untuk tombol yang mungkin tidak sepenuhnya di-cover Tailwind */
+/* Ini hanya contoh, Anda bisa menghapus atau menyesuaikannya */
+.btn-primary {
+    @apply bg-red-700 text-white font-bold py-2 px-4 rounded-md shadow-lg;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    @apply bg-red-800;
+}
+
+/* Contoh styling untuk card atau box */
+.card {
+    @apply bg-white rounded-lg shadow-md p-6;
+}
+
+/* Pastikan gambar responsif */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+}
+
+/* Menyesuaikan beberapa elemen form agar konsisten */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="file"],
+select,
+textarea {
+    @apply border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-400 focus:border-transparent;
+    padding: 0.5rem 0.75rem; /* Padding default */
+    width: 100%; /* Lebar penuh */
+}
+
+/* Styling untuk placeholder input */
+input::placeholder,
+textarea::placeholder {
+    color: #9ca3af; /* gray-400 */
+    opacity: 1; /* Firefox default opacity */
+}
+
+/* Styling untuk scrollbar (opsional, tergantung browser support) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #B91C1C; /* Warna merah primer Anda */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #EF4444; /* red-500, sedikit lebih terang */
+}
+
