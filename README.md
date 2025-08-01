@@ -1,6 +1,6 @@
 # 🏆 LKBB Arunika: Web Pendaftaran Lomba Baris-Berbaris
 
-![Banner Proyek](https://placehold.co/1200x400/8B0000/FFFFFF?text=LKBB+ARUNIKA)
+![Banner Proyek](public/images/logo-arunika.png)
 
 Selamat datang di repositori resmi untuk website **Lomba Keterampilan Baris-Berbaris (LKBB) Arunika**. Proyek ini adalah sebuah platform web untuk pendaftaran, manajemen, dan informasi seputar event LKBB Arunika. Dibangun dengan fokus pada desain yang modern, user-friendly, dan performa tinggi.
 
