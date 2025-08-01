@@ -79,10 +79,6 @@ Pastikan Anda sudah menginstal:
 
 ## 🤝 Kontribusi
 
-Kami menerima kontribusi dalam bentuk apapun! Jika Anda menemukan bug atau memiliki ide fitur baru, silakan buka Issue atau kirimkan Pull Request.
-
-## 📄 Lisensi
-
-Proyek ini dirilis di bawah lisensi [MIT License](https://opensource.org/licenses/MIT).
+Kami menerima kontribusi dalam bentuk apapun! Jika Anda menemukan bug atau memiliki ide fitur baru, silakan hubungi kami di sosial media tertera!.
 
 ---
