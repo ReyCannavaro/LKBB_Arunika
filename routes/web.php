@@ -1,38 +1,60 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
+use App\Models\Event; // Import model Event
+use App\Models\User; // Import model User jika diperlukan untuk autentikasi
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+// Route untuk halaman utama (beranda), selalu me-render beranda.blade.php
 Route::get('/', function () {
-    return view('welcome');
-});
+    $activeEvent = Event::where('status', 'aktif')->first();
+    $noActiveEvent = false;
+    if (!$activeEvent) {
+        $noActiveEvent = true; // Set flag jika tidak ada event aktif
+    }
+    // Melewatkan variabel activeEvent dan noActiveEvent ke view
+    return view('beranda', compact('activeEvent', 'noActiveEvent'));
+})->name('home.index'); // Beri nama 'home.index' agar mudah diakses
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route untuk Pendaftaran Tim (form pendaftaran detail)
+Route::get('/daftar/{event}', [RegistrationController::class, 'create'])->name('registration.create');
+Route::post('/daftar/{event}', [RegistrationController::class, 'store'])->name('registration.store');
 
-// Middleware untuk admin
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/users', [AdminController::class, 'manageUsers'])->name('admin.manage.users');
-});
+// Route untuk halaman "Daftar" di navbar yang mengarah ke registteam.blade.php
+Route::get('/registteam', function () {
+    return view('registteam'); // Pastikan Anda punya resources/views/registteam.blade.php
+})->name('registteam');
 
-// Middleware untuk user biasa
-Route::middleware(['auth', 'user'])->group(function () {
-    Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
-});
 
-// Rute untuk profil yang berlaku umum
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route untuk Login (jika menggunakan autentikasi bawaan Laravel)
+Route::get('/login', function () {
+    return view('auth.login'); // Pastikan Anda punya resources/views/auth/login.blade.php
+})->name('login');
 
-// Rute untuk logout
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route untuk Register (jika menggunakan autentikasi bawaan Laravel)
+Route::get('/register', function () {
+    return view('auth.register'); // Pastikan Anda punya resources/views/auth/register.blade.blade.php
+})->name('register');
 
-require __DIR__.'/auth.php';
+// Route untuk Profile (sementara, bisa diubah nanti)
+Route::get('/profile', function () {
+    // Jika Anda belum mengimplementasikan sistem profil, arahkan ke dashboard atau halaman lain.
+    return redirect()->route('registteam'); // Arahkan ke registteam atau halaman lain yang ada
+})->name('profile.show');
+
+// Route untuk halaman kontak (jika dibutuhkan terpisah dari section di beranda)
+Route::get('/kontak', function () {
+    return view('kontak'); // Anda perlu membuat resources/views/kontak.blade.php
+})->name('contact');
+
