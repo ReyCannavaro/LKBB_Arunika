@@ -1,4 +1,4 @@
-# 🏆 LKBB Arunika: Web Pendaftaran Lomba Baris-Berbaris
+# 🏆 Website LKBB Arunika
 
 ![Banner Proyek](public/images/logo-arunika.png)
 
